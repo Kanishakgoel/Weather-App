@@ -108,7 +108,8 @@ async function updateWeatherInfo(city) {
         humidityValueTxt.textContent = `${humidity}%`;
         windValueTxt.textContent = `${speed} m/s`; // Changed to standard m/s unit
         currentDateTxt.textContent = getCurrentDate();
-        weatherSummaryImg.src = `assets/images/${getWeatherIcon(id)}`; // Added proper path
+        weatherSummaryImg.src = `${getWeatherIcon(id)}`;
+
 
         await updateForecastInfo(city);
         showDisplaySection(weatherInfoSection);
@@ -150,12 +151,13 @@ function updateForecastItems(weatherData) {
     const dateResult = dateTaken.toLocaleDateString('en-US', dateOption);
 
     const forecastItem = `
-        <div class="forecast-item">
-            <h5 class="forecast-item-date regular-txt">${dateResult}</h5>
-            <img src="${getWeatherIcon(id)}" class="forecast-item-img">
-            <h5 class="forecast-item-temp">${Math.round(temp)}°C</h5>
-        </div>
-    `;
+    <div class="forecast-item">
+        <h5 class="forecast-item-date regular-txt">${dateResult}</h5>
+        <img src="./${getWeatherIcon(id)}" class="forecast-item-img">
+        <h5 class="forecast-item-temp">${Math.round(temp)}°C</h5>
+    </div>
+`;
+
     forecastItemContainer.insertAdjacentHTML('beforeend', forecastItem);
 }
 
